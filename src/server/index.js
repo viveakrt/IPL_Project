@@ -17,24 +17,33 @@ fs.createReadStream('../data/matches.csv')
         }
     });
 
+
     fs.writeFile(src + 'matchesWonPerYear.json', JSON.stringify(ipl.numOfWins(results)) , 'utf8',(err) => {
         if(err) {
             console.log(err);
         }
     });
 
+
     fs.createReadStream('../data/deliveries.csv')
     .pipe(csv())
     .on('data', (data) => resultDeliveries.push(data))
     .on('end', () => {
 
-        fs.writeFile(src + 'extraRunsPerTeam.json', JSON.stringify(ipl.extraRunPerTeam(results,resultDeliveries,2016)) , 'utf8',(err) => {
+
+        fs.writeFile(src + 'extraRunsPerTeam.json', JSON.stringify(ipl.extraRunPerTeam(results,resultDeliveries)) , 'utf8',(err) => {
             if(err) {
                 console.log(err);
             }
         });
 
 
+        fs.writeFile(src + 'topTenEconomicalBowlers.json', JSON.stringify(ipl.topTenEconomicalBowlers(results,resultDeliveries)) , 'utf8',(err) => {
+            if(err) {
+                console.log(err);
+            }
+        });
+        
 
         console.log();
 });
