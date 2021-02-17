@@ -2,7 +2,7 @@ function numOfMatches(matches) {
 
     if (typeof matches !== 'object' || matches.length === 0) {
         return {};
-    } 
+    }
     else {
         
         let yearCount = {};
@@ -14,7 +14,6 @@ function numOfMatches(matches) {
                 yearCount[years]++;
             }
             else {
-
                 yearCount[years] = 1;
             }
         }
@@ -24,6 +23,7 @@ function numOfMatches(matches) {
 }
 
 function numOfWins(matches) {
+
     if (typeof matches !== 'object' || matches.length === 0){
         return {};
     }
@@ -64,20 +64,21 @@ function extraRunPerTeam(matches,deliveries,year=2016){
         let season = matches[index].season;
 
         if (season == year) {
+
             let id = matches[index].id;
 
             for (let indexDel=0; indexDel < deliveries.length; indexDel++) {
-
+                
                 let matchId = deliveries[indexDel].match_id;
                 
                 if (id == matchId) {
+
                     let battingTeam = deliveries[indexDel].batting_team;
                 
                     if(items[battingTeam]) {
                         items[battingTeam] += Number(deliveries[indexDel].extra_runs);
-                
-                    }else {
-                
+                    }
+                    else {
                         items[battingTeam] = Number(deliveries[indexDel].extra_runs);
                     }
                 }
@@ -109,12 +110,12 @@ function topTenEconomicalBowlers(matches, deliveries, year=2015) {
                     if (bowlersData[bowler] != undefined) {
                         
                         bowlersData[bowler].balls += 1;
-                        bowlersData[bowler].total_runs += Number(deliveries[indexDel].total_runs)
+                        bowlersData[bowler].total_runs += Number(deliveries[indexDel].total_runs);
                         
                     }else {
                         
                         bowlersData[bowler] = {};
-                        bowlersData[bowler].total_runs = Number(deliveries[indexDel].total_runs)
+                        bowlersData[bowler].total_runs = Number(deliveries[indexDel].total_runs);
                         bowlersData[bowler].balls = 1;
 
                     }
@@ -122,9 +123,9 @@ function topTenEconomicalBowlers(matches, deliveries, year=2015) {
             }
         }
     }
-
+console.log(bowlersData)
     for(let bowler in bowlersData) {
-        
+
         let overs = (bowlersData[bowler].balls) / 6;
         let runs = bowlersData[bowler].total_runs;
         let economy = runs / overs;
