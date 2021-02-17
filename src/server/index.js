@@ -28,14 +28,14 @@ fs.createReadStream('../data/matches.csv')
     .on('data', (data) => resultDeliveries.push(data))
     .on('end', () => {
 
-        fs.writeFile(src + 'extraRunsPerTeam.json', JSON.stringify(ipl.extraRunPerTeam(results,resultDeliveries)) , 'utf8',(err) => {
+        fs.writeFile(src + 'extraRunsPerTeam.json', JSON.stringify(ipl.extraRunPerTeam(results,resultDeliveries,2016)) , 'utf8',(err) => {
             if(err) {
                 console.log(err);
             }
         });
 
-    }
 
-    console.log();
+
+        console.log();
 });
-
+});

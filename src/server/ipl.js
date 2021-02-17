@@ -42,7 +42,36 @@ function numOfWins(matches) {
     }
 }
 
-function extraRunPerTeam(){
+function extraRunPerTeam(matches,deliveries,year=2016){
+    
+    let items = {};
+
+    for (let index=0; index < matches.length; index++) {
+        let season = matches[index].season;
+
+        if (season == year) {
+            let id = matches[index].id;
+
+            for (let indexDel=0; indexDel < deliveries.length; indexDel++) {
+
+                let matchId = deliveries[indexDel].match_id;
+                
+                if (id == matchId) {
+                    let battingTeam = deliveries[indexDel].batting_team;
+                
+                    if(items[battingTeam]) {
+                        items[battingTeam] += Number(deliveries[indexDel].extra_runs);
+                
+                    }else {
+                
+                        items[battingTeam] = Number(deliveries[indexDel].extra_runs);
+                    }
+                }
+            }
+        }
+    }
+    return items;
+
 
 }
 
