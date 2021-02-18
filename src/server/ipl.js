@@ -18,17 +18,6 @@ function numOfMatches(matches) {
             }
         });
         return yearCount;
-        // for(let index = 0; index < matches.length; index++) {
-        //     let years = matches[index].season;
-
-        //     if (years in yearCount) {
-        //         yearCount[years]++;
-        //     }
-        //     else {
-        //         yearCount[years] = 1;
-        //     }
-        // }
-        
 
     }
 }
@@ -63,27 +52,6 @@ function numOfWins(matches) {
             }
         });
         return teams;
-        // for (let index=0; index < matches.length; index++) {
-
-        //     let season=matches[index].season;
-        //     let winner=matches[index].winner;
-            
-        //     if (teams[season] != undefined) {
-                
-        //         if (teams[season][winner] != undefined) {
-        //             teams[season][winner] += 1;
-        //         } 
-        //         else {
-                
-        //             teams[season][winner] = 1;
-        //         }
-        //     } 
-        //     else {
-            
-        //         teams[season] = {};
-        //         teams[season][winner] = 1;
-        //     }
-        // }
         
     }
 }
@@ -114,31 +82,6 @@ function extraRunPerTeam(matches,deliveries,year=2016){
     });
 
     return items;
-    // for (let index=0; index < matches.length; index++) {
-    //     let season = matches[index].season;
-
-    //     if (season == year) {
-
-    //         let id = matches[index].id;
-
-    //         for (let indexDel=0; indexDel < deliveries.length; indexDel++) {
-                
-    //             let matchId = deliveries[indexDel].match_id;
-                
-    //             if (id == matchId) {
-
-    //                 let battingTeam = deliveries[indexDel].batting_team;
-                
-    //                 if(items[battingTeam]) {
-    //                     items[battingTeam] += Number(deliveries[indexDel].extra_runs);
-    //                 }
-    //                 else {
-    //                     items[battingTeam] = Number(deliveries[indexDel].extra_runs);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
     
 }
 
@@ -169,63 +112,6 @@ function topTenEconomicalBowlers(matches, deliveries, year=2015) {
                 });
         });
 
-
-        // matches.forEach(matches => {
-
-        //     if (matches.season == year) {
-    
-        //         deliveries.forEach(element => {
-                    
-        //             if (matches.id == element.match_id) {
-
-        //                 let bowler = deliveries.bowler;
-        //                 if (bowlersData[bowler]) {
-                        
-        //                 bowlersData[bowler].balls += 1;
-        //                 bowlersData[bowler].total_runs += Number(deliveries.total_runs);
-                        
-        //                 }else {
-                        
-        //                 bowlersData[bowler] = {};
-        //                 bowlersData[bowler].total_runs = Number(deliveries.total_runs);
-        //                 bowlersData[bowler].balls = 1;
-
-        //                 }
-        //             }
-        //         });
-        //     }
-        // });
-
-    // for (let index=0; index < matches.length; index++) {
-    //     let season = matches[index].season;
-
-    //     if (season == year) {
-    //         let id = matches[index].id;
-
-    //         for (let indexDel=0; indexDel < deliveries.length; indexDel++) {
-
-    //             let matchId = deliveries[indexDel].match_id;
-                
-    //             if (id == matchId) {
-    //                 let bowler = deliveries[indexDel].bowler;
-                    
-    //                 if (bowlersData[bowler] != undefined) {
-                        
-    //                     bowlersData[bowler].balls += 1;
-    //                     bowlersData[bowler].total_runs += Number(deliveries[indexDel].total_runs);
-                        
-    //                 }else {
-                        
-    //                     bowlersData[bowler] = {};
-    //                     bowlersData[bowler].total_runs = Number(deliveries[indexDel].total_runs);
-    //                     bowlersData[bowler].balls = 1;
-
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
     for(let bowler in bowlerData) {
 
         let overs = (bowlerData[bowler].balls) / 6;
@@ -237,9 +123,7 @@ function topTenEconomicalBowlers(matches, deliveries, year=2015) {
     }
 
     topBowlers.sort((a, b) => a[1] - b[1]);
-    // for (let index of topBowlers.slice(0,10)) {
-    //     items[index[0]] = index[1];
-    // }
+
     topBowlers.forEach(element => {
         items[element[0]] = element[1]
     });
