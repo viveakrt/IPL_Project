@@ -17,6 +17,7 @@ function numOfMatches(matches) {
                 yearCount[years] = 1;
             }
         });
+        return yearCount;
         // for(let index = 0; index < matches.length; index++) {
         //     let years = matches[index].season;
 
@@ -27,7 +28,7 @@ function numOfMatches(matches) {
         //         yearCount[years] = 1;
         //     }
         // }
-        return yearCount;
+        
 
     }
 }
@@ -40,11 +41,10 @@ function numOfWins(matches) {
 
     else{
         let teams = {};
-        
-        for (let index=0; index < matches.length; index++) {
 
-            let season=matches[index].season;
-            let winner=matches[index].winner;
+        matches.forEach(matches => {
+            let season=matches.season;
+            let winner=matches.winner;
             
             if (teams[season] != undefined) {
                 
@@ -61,8 +61,30 @@ function numOfWins(matches) {
                 teams[season] = {};
                 teams[season][winner] = 1;
             }
-        }
+        });
         return teams;
+        // for (let index=0; index < matches.length; index++) {
+
+        //     let season=matches[index].season;
+        //     let winner=matches[index].winner;
+            
+        //     if (teams[season] != undefined) {
+                
+        //         if (teams[season][winner] != undefined) {
+        //             teams[season][winner] += 1;
+        //         } 
+        //         else {
+                
+        //             teams[season][winner] = 1;
+        //         }
+        //     } 
+        //     else {
+            
+        //         teams[season] = {};
+        //         teams[season][winner] = 1;
+        //     }
+        // }
+        
     }
 }
 
@@ -70,84 +92,157 @@ function extraRunPerTeam(matches,deliveries,year=2016){
     
     let items = {};
 
-    for (let index=0; index < matches.length; index++) {
-        let season = matches[index].season;
+    matches.forEach(matches => {
 
-        if (season == year) {
+        if (matches.season == year) {
 
-            let id = matches[index].id;
-
-            for (let indexDel=0; indexDel < deliveries.length; indexDel++) {
+            deliveries.forEach(element => {
                 
-                let matchId = deliveries[indexDel].match_id;
+                if (matches.id == element.match_id) {
                 
-                if (id == matchId) {
-
-                    let battingTeam = deliveries[indexDel].batting_team;
-                
-                    if(items[battingTeam]) {
-                        items[battingTeam] += Number(deliveries[indexDel].extra_runs);
+                    if(items[element.batting_team]) {
+                        items[element.batting_team] += Number(element.extra_runs);
                     }
                     else {
-                        items[battingTeam] = Number(deliveries[indexDel].extra_runs);
+                        items[element.batting_team] = Number(element.extra_runs);
                     }
                 }
-            }
+            });
+            
         }
-    }
+        
+    });
+
     return items;
+    // for (let index=0; index < matches.length; index++) {
+    //     let season = matches[index].season;
+
+    //     if (season == year) {
+
+    //         let id = matches[index].id;
+
+    //         for (let indexDel=0; indexDel < deliveries.length; indexDel++) {
+                
+    //             let matchId = deliveries[indexDel].match_id;
+                
+    //             if (id == matchId) {
+
+    //                 let battingTeam = deliveries[indexDel].batting_team;
+                
+    //                 if(items[battingTeam]) {
+    //                     items[battingTeam] += Number(deliveries[indexDel].extra_runs);
+    //                 }
+    //                 else {
+    //                     items[battingTeam] = Number(deliveries[indexDel].extra_runs);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    
 }
 
 
 function topTenEconomicalBowlers(matches, deliveries, year=2015) {
-    let bowlersData = {};
-    let topEconomicalBowlers = [];
+    let bowlerData = {};
+    let topBowlers = [];
     let items = {};
-    
-    for (let index=0; index < matches.length; index++) {
-        let season = matches[index].season;
 
-        if (season == year) {
-            let id = matches[index].id;
 
-            for (let indexDel=0; indexDel < deliveries.length; indexDel++) {
 
-                let matchId = deliveries[indexDel].match_id;
-                
-                if (id == matchId) {
-                    let bowler = deliveries[indexDel].bowler;
-                    
-                    if (bowlersData[bowler] != undefined) {
-                        
-                        bowlersData[bowler].balls += 1;
-                        bowlersData[bowler].total_runs += Number(deliveries[indexDel].total_runs);
-                        
+    matches.filter(element => element.season == year).forEach(matches => { 
+
+            deliveries.filter(deliveries => matches.id == deliveries.match_id).forEach(element=> {
+
+                    if(bowlerData[element.bowler] != undefined) {
+
+                        bowlerData[element.bowler].balls += 1;
+                        bowlerData[element.bowler].total_runs += Number(element.total_runs); 
+
                     }else {
-                        
-                        bowlersData[bowler] = {};
-                        bowlersData[bowler].total_runs = Number(deliveries[indexDel].total_runs);
-                        bowlersData[bowler].balls = 1;
+
+                        bowlerData[element.bowler] = {};
+                        bowlerData[element.bowler].total_runs = Number(element.total_runs);
+                        bowlerData[element.bowler].balls = 1;
 
                     }
-                }
-            }
-        }
-    }
+                });
+        });
 
-    for(let bowler in bowlersData) {
 
-        let overs = (bowlersData[bowler].balls) / 6;
-        let runs = bowlersData[bowler].total_runs;
+        // matches.forEach(matches => {
+
+        //     if (matches.season == year) {
+    
+        //         deliveries.forEach(element => {
+                    
+        //             if (matches.id == element.match_id) {
+
+        //                 let bowler = deliveries.bowler;
+        //                 if (bowlersData[bowler]) {
+                        
+        //                 bowlersData[bowler].balls += 1;
+        //                 bowlersData[bowler].total_runs += Number(deliveries.total_runs);
+                        
+        //                 }else {
+                        
+        //                 bowlersData[bowler] = {};
+        //                 bowlersData[bowler].total_runs = Number(deliveries.total_runs);
+        //                 bowlersData[bowler].balls = 1;
+
+        //                 }
+        //             }
+        //         });
+        //     }
+        // });
+
+    // for (let index=0; index < matches.length; index++) {
+    //     let season = matches[index].season;
+
+    //     if (season == year) {
+    //         let id = matches[index].id;
+
+    //         for (let indexDel=0; indexDel < deliveries.length; indexDel++) {
+
+    //             let matchId = deliveries[indexDel].match_id;
+                
+    //             if (id == matchId) {
+    //                 let bowler = deliveries[indexDel].bowler;
+                    
+    //                 if (bowlersData[bowler] != undefined) {
+                        
+    //                     bowlersData[bowler].balls += 1;
+    //                     bowlersData[bowler].total_runs += Number(deliveries[indexDel].total_runs);
+                        
+    //                 }else {
+                        
+    //                     bowlersData[bowler] = {};
+    //                     bowlersData[bowler].total_runs = Number(deliveries[indexDel].total_runs);
+    //                     bowlersData[bowler].balls = 1;
+
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    for(let bowler in bowlerData) {
+
+        let overs = (bowlerData[bowler].balls) / 6;
+        let runs = bowlerData[bowler].total_runs;
         let economy = runs / overs;
 
-        topEconomicalBowlers.push([bowler, economy]);
+        topBowlers.push([bowler, economy]);
     
     }
 
-    topEconomicalBowlers.sort((a, b) => a[1] - b[1]);
-    for (let index of topEconomicalBowlers.slice(0,10)) {
-        items[index[0]] = index[1];
-    }
+    topBowlers.sort((a, b) => a[1] - b[1]);
+    // for (let index of topBowlers.slice(0,10)) {
+    //     items[index[0]] = index[1];
+    // }
+    topBowlers.forEach(element => {
+        items[element[0]] = element[1]
+    });
 
     return items;
 
