@@ -7,8 +7,8 @@ function numOfMatches(matches) {
         
         let yearCount = {};
 
-        for (let index = 0; index < matches.length; index++) {
-            let years = matches[index].season;
+        matches.forEach(matches => {
+            let years = matches.season;
 
             if (years in yearCount) {
                 yearCount[years]++;
@@ -16,7 +16,17 @@ function numOfMatches(matches) {
             else {
                 yearCount[years] = 1;
             }
-        }
+        });
+        // for(let index = 0; index < matches.length; index++) {
+        //     let years = matches[index].season;
+
+        //     if (years in yearCount) {
+        //         yearCount[years]++;
+        //     }
+        //     else {
+        //         yearCount[years] = 1;
+        //     }
+        // }
         return yearCount;
 
     }
@@ -123,7 +133,7 @@ function topTenEconomicalBowlers(matches, deliveries, year=2015) {
             }
         }
     }
-console.log(bowlersData)
+
     for(let bowler in bowlersData) {
 
         let overs = (bowlersData[bowler].balls) / 6;
