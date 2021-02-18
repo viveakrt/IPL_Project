@@ -1,3 +1,8 @@
+/**
+ * Method numOfMatches return the numberOfMatches per year
+ * @param {object} matches //Data of matches
+ * @returns {object} // Year with number of matches
+ */
 function numOfMatches(matches) {
 
     if (typeof matches !== 'object' || matches.length === 0) {
@@ -22,6 +27,11 @@ function numOfMatches(matches) {
     }
 }
 
+/**
+ * Method numOfMatches return the number Of Matches won per year by a team
+ * @param {object} matches //Data of matches
+ * @returns {object} // Number of matches won per year by a team
+ */
 function numOfWins(matches) {
 
     if (typeof matches !== 'object' || matches.length === 0){
@@ -55,7 +65,13 @@ function numOfWins(matches) {
         
     }
 }
-
+/**
+ * Method extraRunPerTeam return extra run earned by a team
+ * @param {object} matches //Data of matches
+ * @param {object} deliveries //Data of deliveries
+ * @param {number} year //Year from data default 2016
+ * @returns {object} 
+ */
 function extraRunPerTeam(matches,deliveries,year=2016){
     
     let items = {};
@@ -85,6 +101,13 @@ function extraRunPerTeam(matches,deliveries,year=2016){
     
 }
 
+/**
+ * Method extraRunPerTeam return extra run earned by a team
+ * @param {object} matches //Data of matches
+ * @param {object} deliveries //Data of deliveries
+ * @param {number} year //Year from data default 2015
+ * @returns {object}
+ */
 
 function topTenEconomicalBowlers(matches, deliveries, year=2015) {
     let bowlerData = {};

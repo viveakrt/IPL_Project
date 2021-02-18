@@ -10,6 +10,7 @@
   "author": "Vivek",
   "license": "MIT",
   "dependencies": {
-    "csv-parser": "^3.0.0"
+    "csv-parser": "^3.0.0",
+    "jsdoc": "^3.6.6"
   }
 }
