@@ -40,7 +40,7 @@ function numOfWins(matches) {
 
     else{
         let teams = {};
-
+        
         for (let index=0; index < matches.length; index++) {
 
             let season=matches[index].season;
