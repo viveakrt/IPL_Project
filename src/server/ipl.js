@@ -134,19 +134,9 @@ function topTenEconomicalBowlers(matches, deliveries, year=2015) {
                     }
                 });
         });
-        // console.log(bowlerData);
-        // [bowlerData].forEach(element => {
-        //     console.log(element[1][1]);
-        //     let overs = (element.bowler.balls) / 6;
-        //     console.log(overs);
-        //     let runs = element.total_runs;
-        //     console.log(runs);
-        //     let economy = runs / overs;
-        //     console.log(economy);
-        //     topBowlers.push([element.bowler, economy]);
-        // });
+
     for(let bowler in bowlerData) {
-        console.log(bowler);
+        //console.log(bowler);
         let overs = (bowlerData[bowler].balls) / 6;
         let runs = bowlerData[bowler].total_runs;
         let economy = runs / overs;
