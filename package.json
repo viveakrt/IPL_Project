@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd src/server/ && node index.js",
+    "start": "cd src/server/ && node server.js",
     "dev": "cd src/server/ && nodemon server.js"
   },
   "keywords": [],
