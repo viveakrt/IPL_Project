@@ -10,52 +10,64 @@ function matchesPerYear(data) {
 
     Highcharts.chart('container', {
         chart: {
-            type: 'column'
+            type: 'bar',
         },
         title: {
-            text: 'Matches Per Year'
+            text: 'Extra Runs Per Team',
+            style:{
+                fontSize:'22px',
+                fontWeight:'bold',
+                color:'black'
+            }
+
         },
         subtitle: {
-            text: 'Source: <a href="http://localhost:5002/api/extras>Data</a>'
+            text: 'Extra runs by every team in 2016'
         },
         xAxis: {
             type: 'category',
             labels: {
-                rotation: -90,
+                rotation: 0,
                 style: {
                     fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
+                    
                 }
             },
             title: {
-                text: 'Year'
+                text: 'Teams',
+                style: {
+                    fontSize: '20px'
+                }
             }
         },
         yAxis: {
             min: 0,
             title: {
-                text: 'Number of matches'
+                text: 'Extra Runs',
+                style: {
+                    fontSize: '20px',
+                }
             }
         },
         legend: {
             enabled: false
         },
         tooltip: {
-            pointFormat: 'Number of matches: <b>{point.y}</b>'
+            pointFormat: 'Matches Per Year: <b>{point.y}</b>'
         },
         series: [{
             name: 'Matches',
             data: seriesData,
+            color: '#FFAEBC',
             dataLabels: {
                 enabled: true,
-                rotation: -90,
+                rotation: 0,
                 color: '#FFFFFF',
                 align: 'right',
                 format: '{point.y}', 
-                y: 10, 
+                x: -10,
                 style: {
                     fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
                 }
             }
         }]
